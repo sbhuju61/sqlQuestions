@@ -34,6 +34,7 @@ and tbl_book_loans.dueDate = CURDATE();
 
 5. For each library branch, retrieve the branch name and the total number of books
 loaned out from that branch.
+
 Select tbl_library_branch.branchName, count(*) as TotalBookLoaned  from tbl_library_branch
 left join tbl_book_loans on tbl_book_loans.branchId = tbl_book_loans.branchId
 GROUP BY tbl_library_branch.branchName;
