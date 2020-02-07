@@ -38,8 +38,10 @@ and tbl_book.bookId = tbl_book_loans.bookId;
 5. For each library branch, retrieve the branch name and the total number of books
 loaned out from that branch.
 
-Select tbl_library_branch.branchName, count(*) as TotalBookLoaned  from tbl_library_branch
-left join tbl_book_loans on tbl_book_loans.branchId = tbl_book_loans.branchId
+Select tbl_library_branch.branchName, count(tbl_book_loans.bookId) as TotalBookLoaned
+from tbl_library_branch
+left join tbl_book_loans on tbl_book_loans.branchId = tbl_library_branch.branchId
+where tbl_book_loans.branchId = tbl_library_branch.branchId
 GROUP BY tbl_library_branch.branchName;
 
 6.Retrieve the names, addresses, and number of books checked out for all borrowers
