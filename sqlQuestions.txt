@@ -52,6 +52,10 @@ HAVING TotalBorrowed > 5
 the number of copies owned by the library branch whose name is "Central"
 
 SELECT tbl_book.title, tbl_book_copies.noOfCopies
-FROM tbl_book, tbl_book_copies, tbl_author, tbl_library_branch
-WHERE tbl_author.authorName = 'Stephen King' and tbl_library_branch.branchName = 'Central';
+FROM tbl_book,tbl_author, tbl_book_copies, tbl_book_authors, tbl_library_branch
+WHERE  tbl_book.bookId = tbl_book_authors.bookId
+AND tbl_book.bookId = tbl_book_copies.bookid
+AND tbl_book_copies.branchid = tbl_library_branch.branchid 
+AND tbl_author.authorName = 'Stephen King'
+AND tbl_library_branch.branchName = 'Central';
 
