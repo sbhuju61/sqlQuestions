@@ -40,7 +40,17 @@ GROUP BY tbl_library_branch.branchName;
 
 6.Retrieve the names, addresses, and number of books checked out for all borrowers
 who have more than five books checked out.
-7.
-For each book authored (or co-authored) by "Stephen King", retrieve the title and
+
+SELECT tbl_borrower.name, tbl_borrower.address, COUNT(*) as TotalBorrowed
+FROM tbl_borrower, tbl_book_loans
+WHERE  tbl_borrower.CardNo = tbl_book_loans.CardNo
+GROUP BY tbl_borrower.CardNo
+HAVING TotalBorrowed > 5
+
+7.For each book authored (or co-authored) by "Stephen King", retrieve the title and
 the number of copies owned by the library branch whose name is "Central"
+
+SELECT tbl_book.title, tbl_book_copies.noOfCopies
+FROM tbl_book, tbl_book_copies, tbl_author, tbl_library_branch
+WHERE tbl_author.authorName = 'Stephen King' and tbl_library_branch.branchName = 'Central';
 
