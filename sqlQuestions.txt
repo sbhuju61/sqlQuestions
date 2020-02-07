@@ -15,9 +15,10 @@ and tbl_library_branch.branchID = tbl_book_copies.branchID;
 2.How many copies of the book titled The Lost Tribe are owned by each library branch?
 
 select tbl_book.title, tbl_library_branch.branchName, tbl_book_copies.noOfCopies
-from tbl_book, tbl_library_branch,tbl_book_copies
-where tbl_book.title = "1984"
-and tbl_book.bookID = tbl_book_copies.bookID;
+from tbl_book_copies
+inner join tbl_book on tbl_book.bookID = tbl_book_copies.bookID
+inner join tbl_library_branch on tbl_book_copies.branchID = tbl_library_branch.branchID
+where tbl_book.title = "1984";
 
 3. Retrieve the names of all borrowers who do not have any books checked out.
 
