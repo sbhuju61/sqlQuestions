@@ -27,10 +27,12 @@ where tbl_book_loans.cardNo IS NULL;
 
 4. For each book that is loaned out from the "Sharpstown" branch and whose DueDate is today, retrieve the book title, the borrower's name, and the borrower's address.
 
-Select tbl_book.title, tbl_library_branch.branchName, tbl_borrower.address
-FROM tbl_book, tbl_library_branch, tbl_borrower,tbl_book_loans
-where tbl_library_branch.branchName = "Sharpstown"
-and tbl_book_loans.dueDate = CURDATE();
+select tbl_book.title, tbl_library_branch.branchName, tbl_borrower.address
+from tbl_book, tbl_library_branch, tbl_borrower,tbl_book_loans
+where tbl_library_branch.branchName = "Sharpstone"
+and tbl_book_loans.dueDate = CURDATE()
+and tbl_borrower.cardNo = tbl_book_loans.cardNo
+and tbl_book.bookId = tbl_book_loans.bookId;
 
 5. For each library branch, retrieve the branch name and the total number of books
 loaned out from that branch.
